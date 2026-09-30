@@ -6,90 +6,95 @@
     <title>ศูนย์ข้อมูลอุทกภัย ตำบลบ้านม่วง (Live)</title>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #004080; --accent: #ff3333; --bg: #f0f4f8; --card-bg: #ffffff; }
+        :root { --primary: #004080; --accent: #ff3333; --bg: #f4f7f6; --card-bg: #ffffff; }
         body { font-family: 'Sarabun', sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #333; }
-        header { background: linear-gradient(135deg, #004080, #002244); color: white; padding: 25px 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        header h1 { margin: 0 0 10px 0; font-size: 26px; }
-        header p { margin: 0; font-size: 15px; opacity: 0.9; }
-        
-        .ticker { background: #ffe6e6; color: #cc0000; padding: 12px; font-weight: bold; text-align: center; border-bottom: 2px solid #ff9999; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .live-dot { height: 12px; width: 12px; background-color: #ff3333; border-radius: 50%; display: inline-block; animation: blink 1s infinite; }
+        header { background: linear-gradient(135deg, #003366, #004080); color: white; padding: 25px 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 8px 0; font-size: 24px; }
+        header p { margin: 0; font-size: 14px; opacity: 0.9; }
+
+        .ticker { background: #fff3cd; color: #856404; padding: 12px; font-weight: bold; text-align: center; border-bottom: 2px solid #ffeeba; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 14px; }
+        .live-dot { height: 10px; width: 10px; background-color: #dc3545; border-radius: 50%; display: inline-block; animation: blink 1s infinite; }
         @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.2; } 100% { opacity: 1; } }
 
-        .container { max-width: 900px; margin: 20px auto; padding: 15px; }
-        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media(min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
+        .container { max-width: 850px; margin: 20px auto; padding: 15px; }
+        
+        /* เมนูปุ่มสไตล์เว็บแอป */
+        .app-menu { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
+        @media(min-width: 768px) { .app-menu { grid-template-columns: repeat(3, 1fr); } }
+        .menu-btn { background: white; padding: 15px; border-radius: 10px; text-decoration: none; color: #333; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 12px; border-left: 5px solid var(--primary); transition: 0.2s; }
+        .menu-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .menu-btn span { font-size: 20px; }
+        .menu-btn div h4 { margin: 0; font-size: 15px; color: var(--primary); }
+        .menu-btn div p { margin: 3px 0 0 0; font-size: 12px; color: #666; }
 
-        .card { background: var(--card-bg); padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        .card h3 { margin-top: 0; color: var(--primary); border-bottom: 2px solid #eef2f7; padding-bottom: 10px; }
+        .card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .card h3 { margin-top: 0; color: var(--primary); border-bottom: 2px solid #edf2f7; padding-bottom: 10px; font-size: 18px; }
 
-        .status-box { display: flex; flex-direction: column; gap: 10px; }
-        .status-item { display: flex; justify-content: space-between; padding: 10px; background: #f8fafc; border-radius: 6px; border-left: 5px solid #28a745; }
-        .status-item.warning { border-left-color: #ffc107; }
-        .status-item.danger { border-left-color: #dc3545; }
-
-        .btn-emergency { display: block; background: #dc3545; color: white; text-align: center; padding: 12px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 18px; margin-top: 15px; transition: 0.2s; }
-        .btn-emergency:hover { background: #b52b38; }
-
-        .form-container { width: 100%; min-height: 600px; border: none; }
-        footer { text-align: center; padding: 20px; color: #777; font-size: 13px; }
+        .btn-emergency { display: block; background: #dc3545; color: white; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; margin-top: 10px; }
+        
+        .form-container { width: 100%; min-height: 700px; border: none; }
+        footer { text-align: center; padding: 20px; color: #777; font-size: 12px; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🚨 ศูนย์เกาะติดสถานการณ์น้ำท่วม บ้านม่วง (Live)</h1>
-        <p>อ.บ้านโป่ง จ.ราชบุรี | รายงานสภาพอากาศและระดับน้ำแม่กลองเรียลไทม์</p>
+        <h1>🚨 ศูนย์รายงานสถานการณ์น้ำท่วม ตำบลบ้านม่วง</h1>
+        <p>ระบบรายงานสดและช่วยเหลือผู้ประสบภัย อ.บ้านโป่ง จ.ราชบุรี</p>
     </header>
 
     <div class="ticker">
         <span class="live-dot"></span>
-        <span>แจ้งด่วน: เขื่อนแม่กลองปรับระบายน้ำ ชาวบ้านพื้นที่ลุ่มต่ำบ้านม่วงเฝ้าระวังระดับน้ำล้นตลิ่ง</span>
+        <span>แจ้งเตือน: แม่น้ำแม่กลองล้นตลิ่ง ขอให้ประชาชนในพื้นที่ลุ่มต่ำเก็บของขึ้นที่สูง</span>
     </div>
 
     <div class="container">
         
-        <!-- ส่วนสถานการณ์ปัจจุบัน -->
-        <div class="grid">
-            <div class="card">
-                <h3>📊 สถานการณ์น้ำ & ฝนวันนี้</h3>
-                <div class="status-box">
-                    <div class="status-item danger">
-                        <span>ระดับแม่น้ำแม่กลอง</span>
-                        <strong>สูงกว่าตลิ่ง (เฝ้าระวังสูงสุด)</strong>
-                    </div>
-                    <div class="status-item warning">
-                        <span>สภาพฝนในพื้นที่</span>
-                        <strong>มีฝนฟ้าคะนองบางแห่ง / ตกต่อเนื่อง</strong>
-                    </div>
-                    <div class="status-item">
-                        <span>การระบายน้ำ</span>
-                        <strong>เจ้าหน้าที่ลงพื้นที่ติดตามใกล้ชิด</strong>
-                    </div>
+        <!-- เมนูลัดสไตล์เว็บแอป -->
+        <div class="app-menu">
+            <a href="#report-section" class="menu-btn">
+                <span>📝</span>
+                <div>
+                    <h4>รายงานระดับน้ำ</h4>
+                    <p>แจ้งสถานการณ์ล่าสุดในพื้นที่</p>
                 </div>
-            </div>
-
-            <div class="card">
-                <h3>📞 สายด่วนช่วยเหลือฉุกเฉิน</h3>
-                <p>ต้องการความช่วยเหลือเร่งด่วน กระสอบทราย หรืออพยพ ติดต่อหน่วยงานได้ทันที:</p>
-                <p>📍 <strong>อบต.บ้านม่วง:</strong></p>
-                <a href="tel:032297004" class="btn-emergency">📞 โทร. 0-3229-7004</a>
-            </div>
+            </a>
+            <a href="tel:032297004" class="menu-btn" style="border-left-color: #dc3545;">
+                <span>📞</span>
+                <div>
+                    <h4>สายด่วน อบต.</h4>
+                    <p>โทรขอความช่วยเหลือฉุกเฉิน</p>
+                </div>
+            </a>
+            <a href="#status-section" class="menu-btn" style="border-left-color: #ffc107;">
+                <span>📊</span>
+                <div>
+                    <h4>สถานการณ์ปัจจุบัน</h4>
+                    <p>เช็กสถิติและข้อมูลน้ำ</p>
+                </div>
+            </a>
         </div>
 
-        <!-- ส่วนฟอร์มรายงานสด -->
-        <div class="card">
-            <h3>📝 ฟอร์มรายงานสถานการณ์จากพื้นที่ / ขอความช่วยเหลือ</h3>
-            <p>พบน้ำท่วมถนน น้ำล้นตลิ่ง หรือต้องการความช่วยเหลือ กรอกข้อมูลด้านล่างนี้ได้เลย ข้อมูลจะส่งตรงถึงระบบทันที:</p>
+        <!-- ส่วนสถานการณ์ด่วน -->
+        <div class="card" id="status-section">
+            <h3>📊 ข้อมูลเบื้องต้น & แจ้งเหตุฉุกเฉิน</h3>
+            <p>หากท่านต้องการความช่วยเหลือเร่งด่วน เช่น กระสอบทราย หรือเรืออพยพ สามารถติดต่อได้ทันทีที่:</p>
+            <p>📍 <strong>องค์การบริหารส่วนตำบลบ้านม่วง (อบต.บ้านม่วง)</strong></p>
+            <a href="tel:032297004" class="btn-emergency">📞 สายด่วน อบต.บ้านม่วง: 0-3229-7004</a>
+        </div>
+
+        <!-- ส่วนฟอร์มรายงานสด (ฝัง Google Form ตัวจริงของคุณ) -->
+        <div class="card" id="report-section">
+            <h3>📝 ฟอร์มรายงานระดับน้ำ & ขอความช่วยเหลือ</h3>
+            <p>เลือกพิกัด ระดับน้ำ และส่งข้อมูลรายงานเข้ามาในระบบได้ทันทีผ่านฟอร์มด้านล่างนี้:</p>
             
-            <!-- ใช้ลิงก์รูปแบบสำหรับฝังเว็บโดยตรง -->
             <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfn-8cwk89qyWvUg3QKkXgw2i5yEogQPH4opNm2WJP_RMgY6Q/viewform?embedded=true" class="form-container" frameborder="0" marginheight="0" marginwidth="0">กำลังโหลด…</iframe>
         </div>
 
     </div>
 
     <footer>
-        <p>พัฒนาโดยเยาวชนและชุมชนเพื่อชาวตำบลบ้านม่วง อ.บ้านโป่ง จ.ราชบุรี (ระบบรายงานสด 2026)</p>
+        <p>พัฒนาเพื่อชาวตำบลบ้านม่วง อ.บ้านโป่ง จ.ราชบุรี | ระบบรายงานสถานการณ์ภัยพิบัติ (Live 2026)</p>
     </footer>
 
 </body>
