@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ศูนย์ข้อมูลอุทกภัย ตำบลบ้านม่วง (Live)</title>
+    <style>
+        body { font-family: 'Sarabun', sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; color: #333; }
+        header { background: #0056b3; color: white; padding: 20px; text-align: center; }
+        .container { max-width: 800px; margin: 20px auto; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .alert { background: #ff4d4d; color: white; padding: 15px; border-radius: 5px; margin-bottom: 20px; font-weight: bold; text-align: center; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+        .card { background: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 15px; }
+        .btn { display: inline-block; background: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px; }
+        .btn-emergency { background: #dc3545; }
+        input, textarea, select { width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🚨 ศูนย์ข้อมูลอุทกภัย ตำบลบ้านม่วง (Live)</h1>
+        <p>อ.บ้านโป่ง จ.ราชบุรี - เกาะติดสถานการณ์น้ำแม่กลองและพื้นที่ลุ่มต่ำแบบเรียลไทม์</p>
+    </header>
+
+    <div class="container">
+        <!-- ประกาศด่วน -->
+        <div class="alert">
+            ⚠️ ประกาศด่วน: เขื่อนแม่กลองปรับเพิ่มการระบายน้ำ ขอให้ชาวบ้านตำบลบ้านม่วง (หมู่ 1, 2, 6, 7, 8) เฝ้าระวังระดับน้ำล้นตลิ่ง!
+        </div>
+
+        <!-- แผงสถานการณ์น้ำ -->
+        <div class="card">
+            <h3>📊 สภาพน้ำในพื้นที่ปัจจุบัน</h3>
+            <p><strong>ระดับแม่น้ำแม่กลอง:</strong> สูงกว่าตลิ่ง / เฝ้าระวังสูงสุด</p>
+            <p><strong>ติดต่อฉุกเฉิน อบต.บ้านม่วง:</strong> <a href="tel:032297004" class="btn btn-emergency">📞 โทร. 0-3229-7004</a></p>
+        </div>
+
+        <!-- ส่วนรายงานสถานการณ์จากชาวบ้าน -->
+        <div class="card">
+            <h3>📝 ฟอร์มรายงานสถานการณ์ / ขอความช่วยเหลือ</h3>
+            <p>แจ้งสถานการณ์น้ำในซอย/หมู่บ้านของคุณ หรือแจ้งขอความช่วยเหลือเร่งด่วน</p>
+            <form action="#" method="POST">
+                <label>ชื่อผู้แจ้ง / หมู่บ้าน:</label>
+                <input type="text" name="name_village" placeholder="เช่น หมู่ 2 ซอยวัดม่วง" required>
+                
+                <label>สถานการณ์น้ำ ณ จุดนี้:</label>
+                <select name="status">
+                    <option value="normal">ปกติ (ยังไม่มีน้ำท่วม)</option>
+                    <option value="road">น้ำล้นตลิ่ง / ท่วมถนนในซอย</option>
+                    <option value="house">น้ำท่วมเข้าตัวบ้านแล้ว (ต้องการความช่วยเหลือ)</option>
+                </select>
+
+                <label>รายละเอียดเพิ่มเติม / ความต้องการ:</label>
+                <textarea name="message" rows="4" placeholder="เช่น ต้องการกระสอบทราย, ข้าวกล่อง, น้ำดื่ม"></textarea>
+
+                <button type="submit" class="btn">🚀 ส่งรายงานสถานการณ์</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
