@@ -3,61 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ศูนย์ข้อมูลอุทกภัย ตำบลบ้านม่วง (Live)</title>
+    <title>ศูนย์ข่าวสารและเตือนภัยน้ำท่วม บ้านม่วง (Live)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Sarabun', sans-serif; background-color: #f4f7f6; margin: 0; padding: 0; color: #333; }
-        header { background: #0056b3; color: white; padding: 20px; text-align: center; }
-        .container { max-width: 800px; margin: 20px auto; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .alert { background: #ff4d4d; color: white; padding: 15px; border-radius: 5px; margin-bottom: 20px; font-weight: bold; text-align: center; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
-        .card { background: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 15px; }
-        .btn { display: inline-block; background: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px; }
-        .btn-emergency { background: #dc3545; }
-        input, textarea, select { width: 100%; padding: 10px; margin: 8px 0; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        :root { --primary: #004080; --accent: #ff3333; --bg: #f0f4f8; --card-bg: #ffffff; }
+        body { font-family: 'Sarabun', sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #333; }
+        header { background: linear-gradient(135deg, #004080, #002244); color: white; padding: 25px 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 10px 0; font-size: 26px; }
+        header p { margin: 0; font-size: 15px; opacity: 0.9; }
+        
+        .ticker { background: #ffe6e6; color: #cc0000; padding: 12px; font-weight: bold; text-align: center; border-bottom: 2px solid #ff9999; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .live-dot { height: 12px; width: 12px; background-color: #ff3333; border-radius: 50%; display: inline-block; animation: blink 1s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.2; } 100% { opacity: 1; } }
+
+        .container { max-width: 900px; margin: 20px auto; padding: 15px; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media(min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
+
+        .card { background: var(--card-bg); padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .card h3 { margin-top: 0; color: var(--primary); border-bottom: 2px solid #eef2f7; padding-bottom: 10px; }
+
+        .status-box { display: flex; flex-direction: column; gap: 10px; }
+        .status-item { display: flex; justify-content: space-between; padding: 10px; background: #f8fafc; border-radius: 6px; border-left: 5px solid #28a745; }
+        .status-item.warning { border-left-color: #ffc107; }
+        .status-item.danger { border-left-color: #dc3545; }
+
+        .btn-emergency { display: block; background: #dc3545; color: white; text-align: center; padding: 12px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 18px; margin-top: 15px; transition: 0.2s; }
+        .btn-emergency:hover { background: #b52b38; }
+
+        .form-container { width: 100%; min-height: 550px; border: none; }
+        footer { text-align: center; padding: 20px; color: #777; font-size: 13px; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🚨 ศูนย์ข้อมูลอุทกภัย ตำบลบ้านม่วง (Live)</h1>
-        <p>อ.บ้านโป่ง จ.ราชบุรี - เกาะติดสถานการณ์น้ำแม่กลองและพื้นที่ลุ่มต่ำแบบเรียลไทม์</p>
+        <h1>🚨 ศูนย์เกาะติดสถานการณ์น้ำท่วม บ้านม่วง (Live)</h1>
+        <p>อ.บ้านโป่ง จ.ราชบุรี | รายงานสภาพอากาศและระดับน้ำแม่กลองเรียลไทม์</p>
     </header>
 
-    <div class="container">
-        <!-- ประกาศด่วน -->
-        <div class="alert">
-            ⚠️ ประกาศด่วน: เขื่อนแม่กลองปรับเพิ่มการระบายน้ำ ขอให้ชาวบ้านตำบลบ้านม่วง (หมู่ 1, 2, 6, 7, 8) เฝ้าระวังระดับน้ำล้นตลิ่ง!
-        </div>
-
-        <!-- แผงสถานการณ์น้ำ -->
-        <div class="card">
-            <h3>📊 สภาพน้ำในพื้นที่ปัจจุบัน</h3>
-            <p><strong>ระดับแม่น้ำแม่กลอง:</strong> สูงกว่าตลิ่ง / เฝ้าระวังสูงสุด</p>
-            <p><strong>ติดต่อฉุกเฉิน อบต.บ้านม่วง:</strong> <a href="tel:032297004" class="btn btn-emergency">📞 โทร. 0-3229-7004</a></p>
-        </div>
-
-        <!-- ส่วนรายงานสถานการณ์จากชาวบ้าน -->
-        <div class="card">
-            <h3>📝 ฟอร์มรายงานสถานการณ์ / ขอความช่วยเหลือ</h3>
-            <p>แจ้งสถานการณ์น้ำในซอย/หมู่บ้านของคุณ หรือแจ้งขอความช่วยเหลือเร่งด่วน</p>
-            <form action="#" method="POST">
-                <label>ชื่อผู้แจ้ง / หมู่บ้าน:</label>
-                <input type="text" name="name_village" placeholder="เช่น หมู่ 2 ซอยวัดม่วง" required>
-                
-                <label>สถานการณ์น้ำ ณ จุดนี้:</label>
-                <select name="status">
-                    <option value="normal">ปกติ (ยังไม่มีน้ำท่วม)</option>
-                    <option value="road">น้ำล้นตลิ่ง / ท่วมถนนในซอย</option>
-                    <option value="house">น้ำท่วมเข้าตัวบ้านแล้ว (ต้องการความช่วยเหลือ)</option>
-                </select>
-
-                <label>รายละเอียดเพิ่มเติม / ความต้องการ:</label>
-                <textarea name="message" rows="4" placeholder="เช่น ต้องการกระสอบทราย, ข้าวกล่อง, น้ำดื่ม"></textarea>
-
-                <button type="submit" class="btn">🚀 ส่งรายงานสถานการณ์</button>
-            </form>
-        </div>
+    <div class="ticker">
+        <span class="live-dot"></span>
+        <span>แจ้งด่วน: เขื่อนแม่กลองปรับระบายน้ำ ชาวบ้านพื้นที่ลุ่มต่ำบ้านม่วงเฝ้าระวังระดับน้ำล้นตลิ่ง</span>
     </div>
+
+    <div class="container">
+        
+        <!-- ส่วนสถานการณ์ปัจจุบัน -->
+        <div class="grid">
+            <div class="card">
+                <h3>📊 สถานการณ์น้ำ & ฝนวันนี้</h3>
+                <div class="status-box">
+                    <div class="status-item danger">
+                        <span>ระดับแม่น้ำแม่กลอง</span>
+                        <strong>สูงกว่าตลิ่ง (เฝ้าระวังสูงสุด)</strong>
+                    </div>
+                    <div class="status-item warning">
+                        <span>สภาพฝนในพื้นที่</span>
+                        <strong>มีฝนฟ้าคะนองบางแห่ง / ตกต่อเนื่อง</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>การระบายน้ำ</span>
+                        <strong>เจ้าหน้าที่ลงพื้นที่ติดตามใกล้ชิด</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📞 สายด่วนช่วยเหลือฉุกเฉิน</h3>
+                <p>ต้องการความช่วยเหลือเร่งด่วน กระสอบทราย หรืออطพยพ ติดต่อหน่วยงานได้ทันที:</p>
+                <p>📍 <strong>อบต.บ้านม่วง:</strong></p>
+                <a href="tel:032297004" class="btn-emergency">📞 โทร. 0-3229-7004</a>
+            </div>
+        </div>
+
+        <!-- ส่วนฟอร์มรายงานสด (ฝัง Google Form ที่ทำไว้) -->
+        <div class="card">
+            <h3>📝 ฟอร์มรายงานสถานการณ์จากพื้นที่ / ขอความช่วยเหลือ</h3>
+            <p>พบน้ำท่วมถนน น้ำล้นตลิ่ง หรือต้องการความช่วยเหลือ กรอกข้อมูลด้านล่างนี้ได้เลย ข้อมูลจะส่งตรงถึงส่วนกลางทันที:</p>
+            
+            <!-- วิธีใส่ลิงก์ Google Form: เปลี่ยนลิงก์ใน src="..." เป็นลิงก์ฝัง (Embed) ของคุณ -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe.../viewform?embedded=true" class="form-container" frameborder="0" marginheight="0" marginwidth="0">กำลังโหลด…</iframe>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>พัฒนาโดยเยาวชนและชุมชนเพื่อชาวตำบลบ้านม่วง อ.บ้านโป่ง จ.ราชบุรี (ระบบรายงานสด 2026)</p>
+    </footer>
 
 </body>
 </html>
